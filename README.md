@@ -1,150 +1,145 @@
-START
-    PRINT "================================================"
-    PRINT "==================== WELCOME! =================="
-    PRINT "============ SHAWARMARK FOOD STORE ============="
-    PRINT "================================================"
+START:
+OUTPUT:  " WELCOME! "
+OUTPUT: "SHAWARMARK FOOD STORE"
+    
+OUTPUT: "OUR FOOD MENU"
+OUTPUT: "[SW] Shawarma Wrap:        - P80"
+OUTPUT: "[SS] Shawarma Salad:       - P120"
+OUTPUT:  "[SB] Shawarma Burger:      - P70"
+OUTPUT:  "[ST] Shawarma Tacos:       - P85"
+OUTPUT:  "[SF] Shawarma Fries:       - P85"
 
-    PRINT "------------OUR FOOD MENU---------------"
-    PRINT "[SW] Shawarma Wrap:        - P80"
-    PRINT "[SS] Shawarma Salad:       - P120"
-    PRINT "[SB] Shawarma Burger:      - P70"
-    PRINT "[ST] Shawarma Tacos:       - P85"
-    PRINT "[SF] Shawarma Fries:       - P85"
+OUTPUT: "Enter your name"
+INPUT: name
 
-    INPUT name
+OUTPUT: "Enter food code"
+INPUT: food
+    
 
-    INPUT food_code
-    CONVERT food_code to UPPERCASE
+if food == SW:
+    product = "Shawarma Wrap"
+    price = 80
+elif food == SS:
+    product = "Shawarma Salad"
+    price = 120
+elif food == SB:
+    product = "Shawarma Burger"
+    price = 70
+elif food == ST:
+    product = "Shawarma Tacos"
+    price = 85
+elif food == SF:
+    product = "Shawarma Fries"
+    price = 85
+else:
+    Display "Invalid Code!"
+End if
 
-    IF food_code = "SW" THEN
-        product = "Shawarma Wrap"
-        price = 80
-    ELSE IF food_code = "SS" THEN
-        product = "Shawarma Salad"
-        price = 120
-    ELSE IF food_code = "SB" THEN
-        product = "Shawarma Burger"
-        price = 70
-    ELSE IF food_code = "ST" THEN
-        product = "Shawarma Tacos"
-        price = 85
-    ELSE IF food_code = "SF" THEN
-        product = "Shawarma Fries"
-        price = 85
-    ELSE
-        PRINT "Invalid Code!"
-        END PROGRAM
-    END IF
+OUTPUT: "Enter Food Quantity"
+INPUT: qty
+  
+if qty <= 0:
+    Display "Invalid Food Quantity!"
+End if
 
-    INPUT qty
-    IF qty <= 0 THEN
-        PRINT "Invalid Food Quantity!"
-        END PROGRAM
-    END IF
+subtotal_food = price * qty
 
-    subtotal_food = price * qty
+OUTPUT: "Add Drinks? (Y)Yes or (N)No"
+INPUT: drinks
+    
+IF drinks == Y:
+    Display "--------- OUR DRINKS ------------"
+    Display "[C] COKE:            - P20"
+    Display "[S] SPRITE:          - P20"
+    Display "[R] ROYAL:           - P20"
+    Display "[M] MOUNTAIN DEW:    - P25"
+    Display  "[W] WATER BOTTLED:   - P15"
+        
+OUTPUT: "Choose your drinks code"
+INPUT: choice
 
-    INPUT add_drinks
-    CONVERT add_drinks to UPPERCASE
-
-    IF add_drinks = "Y" THEN
-        PRINT "--------- OUR DRINKS ------------"
-        PRINT "[C] COKE:            - P20"
-        PRINT "[S] SPRITE:          - P20"
-        PRINT "[R] ROYAL:           - P20"
-        PRINT "[M] MOUNTAIN DEW:    - P25"
-        PRINT "[W] WATER BOTTLED:   - P15"
-
-        INPUT drink_code
-
-        IF drink_code = "C" THEN
-            drink_product = "Coke"
+    if choice == C:
+      drink_product = "Coke"
             drink_price = 20
-        ELSE IF drink_code = "S" THEN
-            drink_product = "Sprite"
-            drink_price = 20
-        ELSE IF drink_code = "R" THEN
-            drink_product = "Royal"
-            drink_price = 20
-        ELSE IF drink_code = "M" THEN
-            drink_product = "Mountain Dew"
-            drink_price = 25
-        ELSE IF drink_code = "W" THEN
-            drink_product = "Water Bottled"
-            drink_price = 15
-        ELSE
-            PRINT "Invalid Code!"
-            END PROGRAM
-        END IF
+    elif choice == S:
+        drink_product = "Sprite"
+        drink_price = 20
+    elif choice == R:
+        drink_product = "Royal"
+        drink_price = 20
+    elif choice == M:
+        drink_product = "Mountain Dew"
+        drink_price = 25
+    elif choice == W:
+        drink_product = "Water Bottled"
+        drink_price = 15
+    else:
+        Display "Invalid Code!"
+    End if
 
-        INPUT drink_qty
-        IF drink_qty <= 0 THEN
-            PRINT "Invalid Drinks Quantity!"
-            END PROGRAM
-        END IF
+OUTPUT: "Enter Drinks Quantity"
+INPUT: quantity
 
-    ELSE IF add_drinks = "N" THEN
-        drink_product = "None"
-        drink_price = 0
-        drink_qty = 0
-        PRINT "No Drinks!"
-    ELSE
-        PRINT "Invalid Input! Please Enter (Y) or (N)"
-        END PROGRAM
-    END IF
+    if quantity <=0:
+      Display "Invalid Drinks Quantity!"
+    End if
 
-    subtotal_drinks = drink_price * drink_qty
-    subtotal = subtotal_food + subtotal_drinks
+elif drinks  == N:
+    drink_product = "None"
+    drink_price = 0
+    drink_qty = 0
+    display "No Drinks!"
+else:
+    Display "Invalid Input! Please Enter (Y) or (N)"
+   End if
 
-    IF subtotal >= 1000 THEN
-        discount_rate = 0.12
-    ELSE IF subtotal >= 800 THEN
-        discount_rate = 0.05
-    ELSE
-        discount_rate = 0
-    END IF
+subtotal_drinks = drink_price * quantity
 
-    discount = subtotal * discount_rate
-    after_discount = subtotal - discount
-    tax = after_discount * 0.05
-    final_total = after_discount + tax
+subtotal = subtotal_food + subtotal_drinks
 
-    PRINT "================================================"
-    PRINT "==================== RECEIPT ===================="
-    PRINT "================================================"
-    PRINT "Customer Name  : " + name
-    PRINT "Product Food   : " + product
-    PRINT "Price          : P" + price
-    PRINT "Quantity       : " + qty
-    PRINT "Subtotal Food  : P" + subtotal_food
-    PRINT "================================================"
-    PRINT "Product Drink  : " + drink_product
-    PRINT "Drink Price    : P" + drink_price
-    PRINT "Drink Quantity : " + drink_qty
-    PRINT "Subtotal Drinks: P" + subtotal_drinks
-    PRINT "================================================"
-    PRINT "Subtotal       : P" + subtotal
-    PRINT "Discount       : P" + discount
-    PRINT "Tax (5%)       : P" + tax
-    PRINT "================================================"
-    PRINT "Total Payment  : P" + final_total
-    PRINT "================================================"
+if subtotal >= 1000:
+   discount_rate = 0.12
+elif subtotal >= 800:
+   discount_rate = 0.05
+else:
+   discount_rate = 0
+End if
 
-    INPUT payment
+ discount = subtotal * discount_rate
+ discount_amount = subtotal - discount
+ tax = discount_amount * 0.05
+ final_total = discount_amount + tax
 
-    IF payment >= final_total THEN
-        change = payment - final_total
-        PRINT "Payment : P" + payment
-        PRINT "Change  : P" + change
-    ELSE
-        balance = final_total - payment
-        PRINT "Insufficient payment!"
-        PRINT "Balance : P" + balance
-    END IF
+    
+OUTPUT:  " RECEIPT"
+OUTPUT:  "Customer Name" , name
+OUTPUT:  "Product Food" , product
+OUTPUT:  "Price P" , price
+OUTPUT:  "Quantity" , qty
+OUTPUT:  "Subtotal Food P" , subtotal_food
+OUTPUT:  "Product Drink" , drink_product
+OUTPUT:  "Drink Price P" , drink_price
+OUTPUT:  "Drink Quantity" , quantity
+OUTPUT:  "Subtotal Drinks: P" , subtotal_drinks
+OUTPUT:  "Subtotal : P" , subtotal
+OUTPUT:  "Discount: P" , discount
+OUTPUT:  "Tax (5%): P" , tax    
+OUTPUT:  "Total Payment  : P" , final_total
+  
+OUTPUT: "Enter payment: P"
+INPUT: payment
 
-    PRINT "================================================"
-    PRINT "================= THANK YOU! ===================="
-    PRINT "============== PLEASE COME AGAIN! ==============="
-    PRINT "================================================"
-END
+if payment >= final_total:
+   change = payment - final_total
+   Display "Payment : P" , payment
+   Display "Change  : P" ,  change
+else:
+   balance = final_total - payment
+   Display "Insufficient payment!"
+   Display "Balance : P" , balance
+End if
 
+ OUTPUT:  "THANK YOU!"
+ OUTPUT:  "PLEASE COME AGAIN!"
+ 
+END:
