@@ -1,6 +1,9 @@
 START:
 OUTPUT:  " WELCOME! "
 OUTPUT: "SHAWARMARK FOOD STORE"
+
+OUTPUT: "Enter your name"
+INPUT: name
     
 OUTPUT: "OUR FOOD MENU"
 OUTPUT: "[SW] Shawarma Wrap:        - P80"
@@ -9,8 +12,6 @@ OUTPUT:  "[SB] Shawarma Burger:      - P70"
 OUTPUT:  "[ST] Shawarma Tacos:       - P85"
 OUTPUT:  "[SF] Shawarma Fries:       - P85"
 
-OUTPUT: "Enter your name"
-INPUT: name
 
 OUTPUT: "Enter food code"
 INPUT: food
